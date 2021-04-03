@@ -101,6 +101,18 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Integrate fzf with z, so if you execute z without parameters, you can use fzf
+# to select a directory known to z
+#
+# This snippet is from https://github.com/junegunn/fzf/wiki/Examples#integration-with-z
+unalias z 2> /dev/null
+z() {
+    [ $# -gt 0 ] && _z "$*" && return
+    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
 export STOW_DIR=~/.local/stow
 
 source ~/.zshrc.local
