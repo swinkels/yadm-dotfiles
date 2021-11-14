@@ -1,3 +1,6 @@
+[user]
+        name = Pieter Swinkels
+        email = swinkels.pieter@yahoo.com
 [pull]
         rebase = true
 [include]
