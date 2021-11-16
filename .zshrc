@@ -101,6 +101,11 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Redefine the prompt to show the complete path. This prompt is from the Robby
+# Russel theme with one change: %c was changed to %~
+PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT+=' %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Integrate fzf with z, so if you execute z without parameters, you can use fzf
@@ -116,3 +121,5 @@ z() {
 export STOW_DIR=~/.local/stow
 
 source ~/.zshrc.local
+
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
