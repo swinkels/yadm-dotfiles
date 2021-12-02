@@ -101,10 +101,24 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Redefine the prompt to show the complete path. This prompt is from the Robby
-# Russel theme with one change: %c was changed to %~
+# Redefine the prompt from the Robby Russel theme to
+# 1. show the complete path instead of just the last directory,
+# 2. show the Git info on the right-hand side and
+# 3. remove the parenthesis around the Git branch name.
+#
+# These are the modifications to the default Robby Russel prompt:
+# - to address 1) %c was changed to %~,
+# - to address 2) $(git_prompt_info) was moved to RPROMPT and
+# - to address 3) the parenthesis were removed from the ZSH_THEME_GIT_PROMPT...
+#   variables.
+
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
+PROMPT+=' %{$fg[cyan]%}%~%{$reset_color%} '
+RPROMPT='$(git_prompt_info)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
