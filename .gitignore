@@ -1,0 +1,8 @@
+# Emacs
+.dir-locals.el
+
+# direnv
+.envrc
+
+# tox
+.tox/

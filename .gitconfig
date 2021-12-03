@@ -5,3 +5,5 @@
         rebase = true
 [include]
         path = .gitconfig.local
+[core]
+	excludesfile = /home/swinkepi/.gitignore
