@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux z)
+plugins=(direnv git tmux virtualenv z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,19 +102,26 @@ alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Redefine the prompt from the Robby Russel theme to
-# 1. show the complete path instead of just the last directory,
-# 2. show the Git info on the right-hand side and
-# 3. remove the parenthesis around the Git branch name.
+# 1. show the active virtualenv, if any,
+# 2. show the complete path instead of just the last directory,
+# 3. show the Git info on the right-hand side and
+# 4. remove the parenthesis around the Git branch name.
 #
 # These are the modifications to the default Robby Russel prompt:
-# - to address 1) %c was changed to %~,
-# - to address 2) $(git_prompt_info) was moved to RPROMPT and
-# - to address 3) the parenthesis were removed from the ZSH_THEME_GIT_PROMPT...
+#
+# - to address 1) $(virtualenv_prompt_info) was added to PROMPT,
+# - to address 2) %c was changed to %~,
+# - to address 3) $(git_prompt_info) was moved to RPROMPT and
+# - to address 4) the parenthesis were removed from the ZSH_THEME_GIT_PROMPT...
 #   variables.
 
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[cyan]%}%~%{$reset_color%} '
+PROMPT='$(virtualenv_prompt_info)'
+PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT+=" %{$fg[cyan]%}%~%{$reset_color%} "
 RPROMPT='$(git_prompt_info)'
+
+ZSH_THEME_VIRTUALENV_PREFIX="("
+ZSH_THEME_VIRTUALENV_SUFFIX=") "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}✗"
