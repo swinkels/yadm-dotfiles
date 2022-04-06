@@ -6,4 +6,4 @@
 [include]
         path = .gitconfig.local
 [core]
-	excludesfile = /home/swinkepi/.gitignore
+	excludesfile = .gitignore
