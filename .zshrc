@@ -139,6 +139,9 @@ export STOW_DIR=~/.local/stow
 
 source ~/.zshrc.local
 
+# Use the following directory to store additional Guix profiles
+export GUIX_EXTRA_PROFILES=$HOME/.guix_extra_profiles
+
 # Emacs Tramp doesn't play nice with Zsh (although I don't know anymore what the
 # actual issue was that I encountered).
 #
