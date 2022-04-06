@@ -1,7 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-
-export PATH=$HOME/.local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -143,4 +139,13 @@ export STOW_DIR=~/.local/stow
 
 source ~/.zshrc.local
 
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+# Emacs Tramp doesn't play nice with Zsh (although I don't know anymore what the
+# actual issue was that I encountered).
+#
+# This snippet is from https://www.emacswiki.org/emacs/TrampMode#h5o-9 I've
+# slightly adjusted it as originally, the "||" (or) was also an "&&" (and). The
+# change lets the statement succeed even if the terminal is "dumb". As it's the
+# last line of this file, the first prompt of zsh won't indicate that the
+# previous command failed.
+
+[[ $TERM != "dumb" ]] || unsetopt zle && PS2='$ '
