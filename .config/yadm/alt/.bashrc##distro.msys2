@@ -1,0 +1,4 @@
+# Start zsh, but only for interactive shells
+case "$-" in
+	*i*) export SHELL=`which zsh` && exec "$SHELL" -l
+esac
