@@ -6,4 +6,12 @@
 [include]
         path = .gitconfig.local
 [core]
+	# automatically convert CRLF line endings to LF on commit but leave them as-is
+	# on checkout
+	autocrlf = input
+	# This setting facilitates interoperability between development on Linux,
+	# which uses LF, and Windows, which uses CRLF. Note that the default setting
+	# of "Git for Windows" converts CRLF line endings to LF and vise-versa, so the
+	# repo should only (or mostly) contain LF line endings.
+
 	excludesFile = ~/.gitignore
