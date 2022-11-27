@@ -1,0 +1,16 @@
+- [ ] use other method to add README
+
+Currently directory ~.github~ contains the README so
+
+1. yadm doesn't copy the README to the root of your home directory and
+2. GitHub still shows it to people that visit the main page of the repo on
+   GitHub.
+
+Unfortunately, yadm still creates a directory ~.github~ in the root of the repo.
+[[https://github.com/TheLocehiliosan/yadm/issues/93#issuecomment-582585718][This comment]] on [[https://github.com/TheLocehiliosan/yadm/issues/93#issuecomment-582585718][yadm issue #93]], "Move README and LICENSE to another directory",
+describes another approach using a sparse Git checkout. With this approach, you
+can even do without the ~.github~ directory.
+
+- [ ] describe use of standard Git porcelains with a bare repo
+- [ ] describe use of ~.bash_profile~ and ~.bashrc~ for ~msys2~
+- [ ] describe altenate files in use, so ~default~, ~msys2~ and ~Nunhems~
