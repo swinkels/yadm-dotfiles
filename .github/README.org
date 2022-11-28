@@ -35,8 +35,20 @@ create every variant in a special directory, namely ~/.config/yadm/alt~. Then,
 when you execute ~yadm clone~ or ~yadm pull~, yadm creates a link to the correct
 variant in the root of your home directory.
 
-On Windows, or rather, on NTFS, yadm doesn't use symbolic links and creates a
-well-named copy of the variant instead. This means that if you need to modify
-such a file, you have to edit the original file in ~/.config/yadm/alt~ and
-reinstall the alternate files. You don't have this limitation on Linux, where
-most file systems support symbolic links.
+* Alternate files and Windows
+
+The Windows filesystem NTFS does support links but that functionality isn't
+enabled by default. According to [[https://www.joshkel.com/2018/01/18/symlinks-in-windows/][this article]], you have to
+
+1. run Windows in Developer Mode,
+2. edit the local security policy to grant permissions to create symlinks, and
+3. (possibly) configure the software you use, e.g. MSYS2 and cygwin.
+
+You might not be possible to execute steps 1) and 2), for example on a company
+laptop where you don't have sufficient rights to make these kindes of changes.
+
+On Windows, I always use yadm in a Bash shell that is provided by [[https://www.msys2.org/][MSYS2]]. If I
+cannot enable the functionality to create links, MSYS2 creates a well-named copy
+of the file instead. This means that if I want to modify an alternate file, I
+have to edit the original file in ~/.config/yadm/alt~ and reinstall all
+alternate files.
