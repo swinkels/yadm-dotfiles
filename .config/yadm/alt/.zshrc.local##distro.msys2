@@ -1,4 +1,4 @@
-# ssh-pageant provides an SSH agent that links OpenSSH to Putty' Pageant, which
+# ssh-pageant provides an SSH agent that links OpenSSH to Putty's Pageant, which
 # is an SSH agent for Windows. See https://github.com/cuviper/ssh-pageant for
 # details.
 eval $(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")
