@@ -1,2 +1,6 @@
+:: some tools look at environment variable to determine the location of their
+:: config files, e.g. lazygit
+set XDG_CONFIG_HOME=%HOME%\.config
+
 :: allow Git for Windows to use Putty's Pageant, an SSH agent for Windows
 set GIT_SSH=%HOME%\scoop\apps\putty\current\PLINK.EXE
