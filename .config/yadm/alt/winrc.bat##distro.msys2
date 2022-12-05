@@ -7,3 +7,8 @@ set XDG_CONFIG_HOME=%HOME%\.config
 
 :: allow Git for Windows to use Putty's Pageant, an SSH agent for Windows
 set GIT_SSH=%HOME%\scoop\apps\putty\current\PLINK.EXE
+
+:: Windows-style aliases
+
+:: lazygit on yadm bare repo
+doskey lazygit-yadm=lazygit --git-dir=%HOME%\.local\share\yadm\repo.git --work-tree=%HOME%
