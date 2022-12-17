@@ -31,7 +31,7 @@ home directory as a work tree. This repo doesn't show untracked files, so a
 yadm uses a different approach to support the [[https://yadm.io/docs/alternates][alternate files]], which are
 variants of the same file. It depends on your "environment" which variant yadm
 will install, for example on the OS used or on the name of the machine name. You
-create every variant in a special directory, namely ~/.config/yadm/alt~. Then,
+create every variant in a special directory, namely ~~/.config/yadm/alt~. Then,
 when you execute ~yadm clone~ or ~yadm pull~, yadm creates a link to the correct
 variant in the root of your home directory.
 
