@@ -1,0 +1,7 @@
+[user]
+        email = pieter.swinkels@apg-am.nl
+[credential]
+        helper =
+        helper = C:/Users/aa03666/scoop/apps/git-credential-manager/current/git-credential-manager.exe
+[credential "https://dev.azure.com"]
+        useHttpPath = true
