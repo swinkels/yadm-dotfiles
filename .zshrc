@@ -151,4 +151,4 @@ export GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
 # last line of this file, the first prompt of zsh won't indicate that the
 # previous command failed.
 
-[[ $TERM != "dumb" ]] || unsetopt zle && PS2='$ '
+[[ $TERM != "dumb" ]] || (unsetopt zle && PS1='$ ')
