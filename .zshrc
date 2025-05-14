@@ -135,8 +135,6 @@ z() {
     cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
 
-export STOW_DIR=~/.local/stow
-
 source ~/.zshrc.local
 
 # Emacs Tramp doesn't play nice with Zsh (although I don't know anymore what the
