@@ -123,7 +123,12 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Integrate fzf with Zsh. This enables the well-known fzf keyboard shortcuts such as
+# CTRL+R to browse your command history.
+
+if command -v fzf >/dev/null 2>&1; then
+    source <(fzf --zsh)
+fi
 
 # Integrate fzf with z, so if you execute z without parameters, you can use fzf
 # to select a directory known to z
