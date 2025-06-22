@@ -1,0 +1,10 @@
+# -*- mode: sh; -*-
+
+# Bourne shell startup script
+
+export PATH=${HOME}/.local/bin${PATH:+:${PATH}}
+
+# activate zsh, but only for interactive sessions
+case "$-" in
+    *i*) [ -z "$ZSH_VERSION" ] && export SHELL=`which zsh` && exec "$SHELL" -l
+esac
