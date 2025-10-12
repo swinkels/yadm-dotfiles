@@ -140,8 +140,6 @@ z() {
     cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
 
-source ~/.zshrc.local
-
 # Emacs Tramp doesn't play nice with Zsh (although I don't know anymore what the
 # actual issue was that I encountered).
 #
@@ -152,3 +150,20 @@ source ~/.zshrc.local
 # previous command failed.
 
 [[ $TERM != "dumb" ]] || (unsetopt zle && PS1='$ ')
+
+# let uv only use the Python versions it manages itself
+#
+# When you use the Python version that comes with your OS, that might be
+# upgraded to a newer, major version without you realizing. As in "pulled from
+# underneath you".
+export UV_MANAGED_PYTHON=True
+
+# when uv runs in Emacs [^1], use of progress output slows down uv execution
+#
+# [^1]: observed in Emacs 29.4 and uv 0.7.9
+if [[ -n $INSIDE_EMACS ]]; then
+    export UV_NO_PROGRESS=True
+fi
+
+# keep as last statement so a local config can override standard settings
+source ~/.zshrc.local
