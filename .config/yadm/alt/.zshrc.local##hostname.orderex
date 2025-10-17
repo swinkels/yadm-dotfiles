@@ -1,0 +1,5 @@
+# -*- mode: sh; -*-
+
+# start (or reuse existing) ssh-agent shell on the same system
+
+eval `keychain --eval id_ed25519`
