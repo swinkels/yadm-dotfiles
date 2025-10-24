@@ -1,5 +1,9 @@
 # -*- mode: sh; -*-
 
+# set the clock to the right timezone
+export TZ="Europe/Amsterdam"
+
 # start (or reuse existing) ssh-agent shell on the same system
 
 eval `keychain --eval id_ed25519`
+
