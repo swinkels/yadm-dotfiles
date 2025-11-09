@@ -13,8 +13,11 @@ function start_switch_to {
     local WINDOWS
     WINDOWS=$(wmctrl -lx | grep "$WM_CLASS")
     if [ $? -ne 0 ]; then
-        # let's assume no instance of $APP_NAME is running so start a new one
-        $APP_EXEC
+        notify-send \
+            --icon=dialog-error \
+            "Unable to switch to $APP_NAME" \
+            "No running instance was found."
+        return 1
     fi
 
     local COUNT
@@ -24,7 +27,7 @@ function start_switch_to {
             --icon=dialog-error \
             "Unable to switch to $APP_NAME" \
             "More than one instance was found ($COUNT)."
-        return 1
+        return 2
     fi
 
     local WIN
