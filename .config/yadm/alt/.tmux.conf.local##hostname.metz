@@ -1,0 +1,4 @@
+# -*- mode: conf; -*-
+
+# load plugin to save and restore tmux environment
+run-shell ~/.guix-profile/share/tmux-plugins/resurrect/resurrect.tmux
