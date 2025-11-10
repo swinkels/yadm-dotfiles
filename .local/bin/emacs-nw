@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function show_usage {
+    echo "Usage: emacs-nw [-h] [-H] [EMACSCLIENT-OPTIONS]"
+    echo ""
+    echo "Start a terminal Emacs session to an Emacs instance running in "
+    echo "daemon mode."
+    echo ""
+    echo "If no such Emacs instance is running, this command starts one."
+    echo ""
+    echo "    -h, --help  show this help list"
+    echo "    -H          show the help of the underlying emacsclient command"
+    echo ""
+}
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    show_usage
+    exit 0
+elif [ "$1" == "-H" ]; then
+    emacsclient --help
+    exit 0
+fi
+
+# In the terminal, when you start Emacs in daemon mode, the colors of a
+# subsequent emacsclient can look off color-wise.[spacemacs-theme#163][1] and
+# [doomemacs#3761][2] seem to suggest that Emacs cannot detect what colors it
+# can use and therefore selects a different theme.
+#
+# As a workaround, interactively select the color theme of your choosing and
+# from then on, all should be well.
+#
+# [1]: https://github.com/nashamri/spacemacs-theme/issues/163
+# [2]: https://github.com/doomemacs/doomemacs/issues/3761
+
+
+# -nw                     open a new Emacs frame on the current terminal
+# -alternate-editor ""    when no Emacs server is running, start Emacs in
+#                         daemon mode and try to connect again
+# $@                      expand all positional parameters to separate words
+
+emacsclient -nw --alternate-editor="" "$@"
