@@ -97,32 +97,6 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Redefine the prompt from the Robby Russel theme to
-# 1. show the active virtualenv, if any,
-# 2. show the complete path instead of just the last directory,
-# 3. show the Git info on the right-hand side and
-# 4. remove the parenthesis around the Git branch name.
-#
-# These are the modifications to the default Robby Russel prompt:
-#
-# - to address 1) $(virtualenv_prompt_info) was added to PROMPT,
-# - to address 2) %c was changed to %~,
-# - to address 3) $(git_prompt_info) was moved to RPROMPT and
-# - to address 4) the parenthesis were removed from the ZSH_THEME_GIT_PROMPT...
-#   variables.
-
-PROMPT='$(virtualenv_prompt_info)'
-PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=" %{$fg[cyan]%}%~%{$reset_color%} "
-RPROMPT='$(git_prompt_info)'
-
-ZSH_THEME_VIRTUALENV_PREFIX="("
-ZSH_THEME_VIRTUALENV_SUFFIX=") "
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
-
 # Integrate fzf with Zsh. This enables the well-known fzf keyboard shortcuts such as
 # CTRL+R to browse your command history.
 
@@ -194,6 +168,9 @@ export UV_MANAGED_PYTHON=True
 if [[ -n $INSIDE_EMACS ]]; then
     export UV_NO_PROGRESS=True
 fi
+
+
+eval "$(starship init zsh)"
 
 # keep as last statement so a local config can override standard settings
 source ~/.zshrc.local
