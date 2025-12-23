@@ -3,12 +3,3 @@
 # set the clock to the right timezone
 
 export TZ="Europe/Amsterdam"
-
-# start (or reuse existing) ssh-agent shell on the same system
-#
-# We deliberately do not add any keys yet. It would slow down the start of the 
-# initial shell because you have to enter the passphrase. Instead, call
-# `ssh-add` once you actually need a key.
-
-eval `keychain --eval`
-
