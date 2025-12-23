@@ -151,6 +151,36 @@ z() {
 
 [[ $TERM != "dumb" ]] || (unsetopt zle && PS1='$ ')
 
+# Allow directory tracking in vterm.
+#
+# If you do a find-file from an active vterm, this lets Emacs start with your
+# vterm working directory.
+#
+# The following snippets are from
+# https://github.com/akermu/emacs-libvterm?tab=readme-ov-file#directory-tracking-and-prompt-tracking
+
+if [[ -n $INSIDE_EMACS ]]; then
+    vterm_printf() {
+        if [ -n "$TMUX" ] \
+               && { [ "${TERM%%-*}" = "tmux" ] \
+                        || [ "${TERM%%-*}" = "screen" ]; }; then
+            # Tell tmux to pass the escape sequences through
+            printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+        elif [ "${TERM%%-*}" = "screen" ]; then
+            # GNU screen (screen, screen-256color, screen-256color-bce)
+            printf "\eP\e]%s\007\e\\" "$1"
+        else
+            printf "\e]%s\e\\" "$1"
+        fi
+    }
+
+    vterm_prompt_end() {
+        vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+    }
+    setopt PROMPT_SUBST
+    PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+fi
+
 # let uv only use the Python versions it manages itself
 #
 # When you use the Python version that comes with your OS, that might be
