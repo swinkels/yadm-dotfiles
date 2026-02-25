@@ -108,10 +108,12 @@ fi
 # to select a directory known to z
 #
 # This snippet is from https://github.com/junegunn/fzf/wiki/Examples#integration-with-z
+#
+# Also see https://github.com/ohmyzsh/ohmyzsh/issues/11282, "Plugin 'z' broken after update"
 unalias z 2> /dev/null
 z() {
-    [ $# -gt 0 ] && _z "$*" && return
-    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+    [ $# -gt 0 ] && zshz "$*" && return
+    cd "$(zshz -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
 
 # Emacs Tramp doesn't play nice with Zsh (although I don't know anymore what the
