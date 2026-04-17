@@ -128,7 +128,6 @@ z() {
 [[ $TERM != "dumb" ]] || (unsetopt zle && PS1='$ ')
 
 eval "$(starship init zsh)"
-
 # Allow directory tracking in vterm.
 #
 # If you do a find-file from an active vterm, this lets Emacs start with your
@@ -173,6 +172,9 @@ if [[ -n $INSIDE_EMACS ]]; then
     export UV_NO_PROGRESS=True
 fi
 
+# cdr: cd to the root of the current Git repo
+
+alias cdr='cd $(git rev-parse --show-toplevel)'
 
 # keep as last statement so a local config can override standard settings
 source ~/.zshrc.local
